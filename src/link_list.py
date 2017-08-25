@@ -1,5 +1,5 @@
 import pypyodbc
-from CONSTANTS import CONNECTION_STRING, SQL_COMMAND
+from .CONSTANTS import CONNECTION_STRING, SQL_COMMAND
 
 
 class Node:
@@ -21,8 +21,8 @@ class Node:
 
 
 class SingleLinkList:
-    def __init__(self):
-        self.head = None
+    def __init__(self, head_data):
+        self.head = Node(head_data)
 
     def is_empty(self):
         return self.head is None
@@ -108,3 +108,14 @@ class SingleLinkList:
             self.head = current.get_next()
         else:
             previous.setNext(current.get_next())
+
+    def make_accumulated_excel(self):
+        accumulator = self.head.get_data()
+        current = self.head.get_next()
+        while current is not None:
+            for client in current.get_data():
+                client_name = client.get_name()
+                current_client_values = client.get_stats_for_excel()
+                accumulator[client_name].set_stats_for_excel(*current_client_values)
+            current = current.get_next()
+        return accumulator

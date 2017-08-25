@@ -2,6 +2,7 @@ import os
 from os import path
 
 SELF_PATH = os.path.dirname(path.dirname(path.abspath(__file__)))
+
 OUTPUT_PATH = '\\Daily SLA Parser - Automated Version\\Output\\'
 M_DRIVE_PATH = 'M:\\Help Desk\\Daily SLA Report\\'
 CONNECTION_STRING = "Driver={SQL Server};Server=localhost;Database=mw_calling;Trusted_Connection=yes"
